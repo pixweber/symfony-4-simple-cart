@@ -1,2 +1,3 @@
-# symfony-4-simple-cart
+# Symfony 4 Simple Cart
+
 A very simple ecommerce cart using Symfony 4
