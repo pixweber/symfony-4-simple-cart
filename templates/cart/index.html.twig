@@ -1,20 +1,107 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Cart{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="row mb-3">
+        <div class="col-6">
+            <h2>Your cart: {{ cartItemsCount }} items</h2>
+        </div>
+        <div class="col-6">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        </div>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'E:/TheHauWeb/Learning/learn_symfony_4/cart-dev/src/Controller/CartController.php'|file_link(0) }}">src/Controller/CartController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'E:/TheHauWeb/Learning/learn_symfony_4/cart-dev/templates/cart/index.html.twig'|file_link(0) }}">templates/cart/index.html.twig</a></code></li>
-    </ul>
+<div class="row">
+    <div class="col-9">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if cartItems %}
+                {% for cartItem in cartItems %}
+                    <tr class="cart-item" data-product-id="{{ cartItem.productId }}" data-price="{{ cartItem.productPrice }}" data-quantity="{{ cartItem.quantity }}" data-total="{{ cartItem.total }}">
+                        <td>
+                            <form method="post" action="{{ path('cart_remove_item', {'productId': cartItem.productId}) }}">
+                                <button class="btn btn-sm font-weight-bold pt-0 pb-0 text-danger" title="Remove item">x</button>
+                                <img src="{{ cartItem.productImage }}" height="40"/>
+                            </form>
+                        </td>
+                        <td>{{ cartItem.productName }}</td>
+                        <td>${{ cartItem.productPrice }}</td>
+                        <td><input type="number" min="1" value="{{ cartItem.quantity }}" class="text-right"></td>
+                        <td>${{ cartItem.total }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                No items
+            {% endif %}
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-8">
+                {% if cartItemsCount > 0 %}
+                    <form method="post" action="{{ path('cart_empty_cart') }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Emtpy cart</button>
+                    </form>
+                {% endif %}
+            </div>
+            <div class="col-4">
+                <form id="update-cart-form" method="post" action="{{ path('cart_update') }}">
+                    <button type="submit" class="btn btn-sm btn-block btn-success float-right">Update cart</button>
+                    <input type="hidden" id="cart-items-json" name="cart-items-json" value="{{ cartItemsJson }}" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div id="cart-sidebar">
+            <div class="row mb-2">
+                <div class="col-7">
+                    Subtotal ({{ cartItemsCount }} items
+                </div>
+                <div class="col-5 text-right">
+                    ${{ cartSubtotal }}
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Delivery
+                </div>
+                <div class="col-5 text-right">
+                    Free
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Taxes & fess
+                </div>
+                <div class="col-5 text-right">
+                    ${{ taxesTotal }}
+                </div>
+            </div>
+            <hr />
+
+            <div class="row mb-2">
+                <div class="col-7">
+                    Total
+                </div>
+                <div class="col-5 text-right">
+                    <b>${{ cartTotal }}</b>
+                </div>
+            </div>
+
+            <a href="#" class="btn btn-block btn-primary">Check Out</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
+
