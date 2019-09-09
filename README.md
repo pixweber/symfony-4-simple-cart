@@ -20,7 +20,7 @@ Create a new database
 
 Create database schema
 
-`php bin/console doctrine:schema:update`
+`php bin/console doctrine:schema:update --dump-sql`
 
 Change database credentials to yours in .env
 
