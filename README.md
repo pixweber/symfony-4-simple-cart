@@ -26,6 +26,10 @@ Change database credentials to yours in .env
 
 `DATABASE_URL=mysql://master:master@127.0.0.1:3306/symfony_cart_dev`
 
+## Demo
+
+https://symfony-4-simple-cart.herokuapp.com
+
 ## Support
 
 If you need help or encounter some problem, please submit a new issue. I will be more than happy to help.
