@@ -105,9 +105,6 @@
     "monolog/monolog": {
         "version": "1.25.1"
     },
-    "nikic/php-parser": {
-        "version": "v4.2.4"
-    },
     "ocramius/package-versions": {
         "version": "1.5.1"
     },
@@ -233,15 +230,6 @@
     "symfony/intl": {
         "version": "v4.3.4"
     },
-    "symfony/maker-bundle": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
-        }
-    },
     "symfony/mime": {
         "version": "v4.3.4"
     },
@@ -282,9 +270,6 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.12.0"
-    },
-    "symfony/process": {
-        "version": "v4.3.4"
     },
     "symfony/profiler-pack": {
         "version": "v1.0.4"
@@ -365,15 +350,6 @@
             "./config/packages/test/web_profiler.yaml",
             "./config/routes/dev/web_profiler.yaml"
         ]
-    },
-    "symfony/web-server-bundle": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
-        }
     },
     "symfony/webpack-encore-bundle": {
         "version": "1.0",
